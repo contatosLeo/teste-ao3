@@ -1,0 +1,42 @@
+<div class="col-md-12">
+              <div class="card card-plain">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title mt-0"> Lista de veículos</h4>
+                  <p class="card-category"> Reserve o seu</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead class="">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Placa
+                        </th>
+                        <th>
+                          Veículo
+                        </th>
+                      </thead>
+                      <tbody>
+                        <% @vehicles.each do |vehicle| %>
+                          <% next if Reserve.where(vehicle_id: vehicle.id).count > 0 %>
+                          <tr>
+                            <td><%= vehicle.id %></td>
+                            <td><%= vehicle.license_plate %></td>
+                            <td><%= vehicle.model %></td>
+                            <td>
+                              <% if current_user %>
+                                <%= link_to 'Editar', edit_vehicle_path(vehicle) %>
+                              <% else %>
+                                <%= link_to 'Reservar', new_reserf_path(vehicle_id: vehicle.id) %>
+                              <% end %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>

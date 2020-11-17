@@ -1,0 +1,43 @@
+
+<%= form_with model: @vehicle do |form| %>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <%= form.label :license_plate, class: 'bmd-label-floating' %>
+                          <%= form.text_field :license_plate, class: 'form-control' %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <%= form.label :brand, class: 'bmd-label-floating' %>
+                          <%= form.select :brand, @brands.collect { |b| [b['fipe_name'], b['id']] }, { include_blank: true }, { class: 'form-control' } %>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <%= form.label :model, class: 'bmd-label-floating' %>
+                          <%= form.select :model, @models.collect { |m| [m['fipe_name'], m['fipe_name']] }, { include_blank: true }, { class: 'form-control' } %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <%= form.label :year_model, class: 'bmd-label-floating' %>
+                          <%= form.number_field :year_model, { min: 1900, max: 2099, class: 'form-control' } %>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <%= form.label :year_manufacture, class: 'bmd-label-floating' %>
+                          <%= form.number_field :year_manufacture, { min: 1900, max: 2099, class: 'form-control' } %>
+                        </div>
+                      </div>
+                    </div>
+                    <%= form.submit class: 'btn btn-primary pull-right' %>
+                    <div class="clearfix"></div>
+<% end %>
+
+<%= javascript_pack_tag 'js_form_vehicle' %>

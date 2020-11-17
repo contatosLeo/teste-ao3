@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Reservar</h4>
+        <p class="card-category">Veiculo: <%= @vehicle.model %></p>
+      </div>
+      <div class="card-body">
+        
+        <%= form_with model: @reserve do |form| %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= form.label :document, class: 'bmd-label-floating' %>
+                <%= form.number_field :document, { class: 'form-control' } %>
+                <%= form.hidden_field :vehicle_id, value: params[:vehicle_id] %>
+              </div>
+            </div>
+          </div>
+          <%= form.submit class: 'btn btn-primary pull-right' %>
+          <div class="clearfix"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
